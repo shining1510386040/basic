@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.springboot.web.mapper.UserInfoMapper">
+
+    <select id="getOne" resultType="com.demo.springboot.web.entity.Userinfo" parameterType="long">
+        select *
+        from userinfo
+        where id = #{id}
+    </select>
+
+    <resultMap type="com.demo.springboot.web.entity.Userinfo" id="userRetMap">
+        <id column="id" property="id"/>
+        <id column="userName" property="userName"/>
+        <id column="passWord" property="passWord"/>
+        <id column="realName" property="realName"/>
+    </resultMap>
+    <select id="getAll" resultMap="userRetMap" parameterType="map">
+        select *
+        from userinfo
+        where 1 = 1
+
+    </select>
+</mapper>
