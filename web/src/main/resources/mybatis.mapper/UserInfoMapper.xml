@@ -4,10 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.demo.springboot.web.mapper.UserInfoMapper">
 
-    <select id="getOne" resultType="com.demo.springboot.web.entity.Userinfo" parameterType="long">
+    <select id="getOne" resultMap="userRetMap" parameterType="long">
         select *
         from userinfo
         where id = #{id}
+    </select>
+
+    <select id="getUserWithNameAndPass" resultType="com.demo.springboot.web.entity.Userinfo" parameterType="map">
+        select *
+        from userinfo t
+        where t.userName = #{userName}
+          and t.passWord = #{passWord}
     </select>
 
     <resultMap type="com.demo.springboot.web.entity.Userinfo" id="userRetMap">
@@ -16,10 +23,42 @@
         <id column="passWord" property="passWord"/>
         <id column="realName" property="realName"/>
     </resultMap>
-    <select id="getAll" resultMap="userRetMap" parameterType="map">
+
+    <select id="getAll" resultMap="userRetMap" parameterType="Userinfo">
         select *
         from userinfo
         where 1 = 1
-
+        <if test="userName!=null and userName!=''">
+            AND userName like CONCAT(#{userName},'%')
+        </if>
+        <if test="passWord!=null and passWord!=''">
+            AND passWord like CONCAT(#{passWord},'%')
+        </if>
+        <if test="realName!=null and realName!=''">
+            AND realName like CONCAT('%',#{realName},'%')
+        </if>
     </select>
+
+    <insert id="saveUser" parameterType="com.demo.springboot.web.entity.Userinfo">
+        insert into userinfo( userName,passWord,realName)
+        values (#{userName}, #{passWord}, #{realName})
+    </insert>
+
+    <delete id="deleteUser" parameterType="long">
+        delete from userinfo where id = #{id}
+    </delete>
+
+    <update id="updateUser" parameterType="com.demo.springboot.web.entity.Userinfo">
+        update userinfo t set
+        <if test="userName!=null and userName!=''">
+            t.userName = #{userName},
+        </if>
+        <if test="passWord!=null and passWord!=''">
+            t.passWord = #{passWord},
+        </if>
+        <if test="realName!=null and realName!=''">
+            t.realName = #{realName}
+        </if>
+        where t.id = #{id}
+    </update>
 </mapper>

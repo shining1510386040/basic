@@ -2,12 +2,15 @@ package com.demo.springboot.web.controller;
 
 import com.demo.springboot.web.entity.Userinfo;
 import com.demo.springboot.web.mapper.UserInfoMapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.sun.org.apache.regexp.internal.RE;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Wenyi Cao
@@ -51,14 +54,19 @@ public class UserInfoController {
     @PostMapping("/delete")
     public int deleteUser(@RequestParam long id) {
         // 参数自动绑定 对象属性
-        int i = userInfoMapper.deleteUser(id);
-        return i;
+//        int i = userInfoMapper.deleteUser(id);
+        int update = sqlSessionTemplate.update("com.demo.springboot.web.mapper.UserInfoMapper." + "deleteUser", id);
+        return update;
     }
 
     @PostMapping("/getAll")
-    public List<Userinfo> getAll(Userinfo search, @RequestParam int pageNo, @RequestParam int pageSize) {
-        List<Userinfo> all = userInfoMapper.getAll(search, pageNo, pageSize);
-        return all;
+    public PageInfo<Userinfo> getAll(Userinfo search, @RequestParam int pageNo, @RequestParam int pageSize) {
+
+        PageHelper.startPage(pageNo,pageSize);
+
+        List<Userinfo> all = userInfoMapper.getAll(search);
+
+        return new PageInfo<>(all);
     }
 
 }

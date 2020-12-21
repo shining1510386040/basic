@@ -4,6 +4,7 @@ import com.demo.springboot.web.entity.Userinfo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Wenyi Cao
@@ -25,7 +26,7 @@ public interface UserInfoMapper {
 
     Userinfo getOne(long id);
 
-    List<Userinfo> getAll(Userinfo search, int pageNo, int pageSize);
+    List<Userinfo> getAll(Userinfo search);
 
-
+    Userinfo getUserWithNameAndPass(String username, String password);
 }

@@ -7,6 +7,7 @@
     <groupId>com.demo.springboot</groupId>
     <artifactId>basic</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <name>basic</name>
     <!-- springboot 基础工程 -->
@@ -14,6 +15,7 @@
 
     <modules>
         <module>web</module>
+        <module>rabbitmq</module>
     </modules>
 
     <properties>
