@@ -104,6 +104,25 @@
             <artifactId>spring-boot-starter-data-jdbc</artifactId>
             <version>${springboot.version}</version>
         </dependency>
+
+        <!--spring retry 接口重试 熔断框架-->
+        <dependency>
+            <groupId>org.springframework.retry</groupId>
+            <artifactId>spring-retry</artifactId>
+            <version>1.2.2.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.8.9</version>
+        </dependency>
+
     </dependencies>
     <dependencyManagement>
         <dependencies>
