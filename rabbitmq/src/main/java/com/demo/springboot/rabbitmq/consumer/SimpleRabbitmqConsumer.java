@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @author Wenyi Cao
  * @version 1.0
  * @link
- * @description TODO
+ * @description 简单的rabbitmq消费者
  * @date 2020/12/21 12:41
  * @see
  */

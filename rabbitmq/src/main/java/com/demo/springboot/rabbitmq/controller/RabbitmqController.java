@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * @author Wenyi Cao
  * @version 1.0
  * @link
- * @description TODO
+ * @description rabbitmq controller
  * @date 2020/12/21 12:51
  * @see
  */

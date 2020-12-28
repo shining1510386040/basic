@@ -5,6 +5,7 @@ import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.demo.springboot.web.intercept.LoginInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -21,13 +22,28 @@ import java.util.List;
 @Configuration
 public class MyWebMvcConfig implements WebMvcConfigurer {
 
+    /**
+     * @param
+     * @return
+     * @author Wenyi Cao
+     * @version 1.0
+     * @description 添加拦截器
+     * @date 2020/12/28 10:27
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 //        添加拦截器，定义拦截url规则，并定义在拦截器链中的顺序；
 //        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns("/toLogin", "/", "index.html").order(-1);
     }
 
-
+    /**
+     * @param
+     * @return
+     * @author Wenyi Cao
+     * @version 1.0
+     * @description 添加消息转换器
+     * @date 2020/12/28 10:27
+     */
     @Override
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
         // 添加消息转换器：请求报文在SpringMVC中，可以使用@RequestBody和@ResponseBody两个注解，
@@ -48,11 +64,27 @@ public class MyWebMvcConfig implements WebMvcConfigurer {
                 SerializerFeature.DisableCircularReferenceDetect,//
                 SerializerFeature.WriteNullBooleanAsFalse,//
                 SerializerFeature.WriteMapNullValue//
-                );
+        );
         converters.add(converter);
 
     }
 
+    /**
+     * @param
+     * @return
+     * @author Wenyi Cao
+     * @version 1.0
+     * @description 跨域设置
+     * @date 2020/12/25 17:19
+     */
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("*")
+                .allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE")
+                .maxAge(3600)
+                .allowCredentials(true);
+    }
 
 
 }
