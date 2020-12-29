@@ -22,6 +22,11 @@ public class ServiceResult implements Serializable {
         this.requestId = "000000";
     }
 
+    public ServiceResult(String returnCode, String returnInfo) {
+        this.returnCode = returnCode;
+        this.returnInfo = returnInfo;
+    }
+
     /**
      * 接口返回的数据
      */

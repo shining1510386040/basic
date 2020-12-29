@@ -16,13 +16,14 @@
     <modules>
         <module>web</module>
         <module>rabbitmq</module>
+        <module>adminserver</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
-        <springboot.version>2.1.1.RELEASE</springboot.version>
+        <springboot.version>2.1.0.RELEASE</springboot.version>
         <!--<spring.version>4.1.7.RELEASE</spring.version>-->
     </properties>
 </project>

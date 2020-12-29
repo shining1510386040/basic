@@ -23,7 +23,7 @@ import java.util.Map;
  * @see
  */
 @Controller
-@RequestMapping("/user")
+//@RequestMapping("/view")
 public class LoginController {
 
     @Autowired
@@ -37,10 +37,10 @@ public class LoginController {
      * @description 转到登录页面
      * @date 2020/12/18 20:21
      */
-    @GetMapping(value = {"/toLogin", "/", "index.html"})
+//    @GetMapping(value = {"/toLogin", "/", "index.html"})
     public String toLogin() {
 
-        return "user/login";
+        return "view/login";
     }
 
     @PostMapping("/login")
@@ -54,7 +54,7 @@ public class LoginController {
         } else {
             // 登录失败，返回提示信息，转发到登录页
             map.put("msg", "登录失败");
-            return "user/login";
+            return "view/login";
         }
     }
 

@@ -11,6 +11,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
@@ -103,6 +104,25 @@ public class MyWebMvcConfig implements WebMvcConfigurer {
         factory.setReadTimeout(15000);
         factory.setConnectTimeout(15000);
         return factory;
+    }
+
+    /**
+     * @param
+     * @return
+     * @author Wenyi Cao
+     * @version 1.0
+     * @description webmvc 静态资源处理（js，css，html）
+     *
+     * 默认ResourceProperties：classpath:/META-INF/resources/", "classpath:/resources/",
+     * "classpath:/static/", "classpath:/public/
+     * @date 2020/12/29 15:14
+     */
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        //配置静态资源处理
+        registry.addResourceHandler("/**")
+                .addResourceLocations("classpath:/resources/", "classpath:/static/",
+                        "classpath:/public/", "file:///tmp/webapps/");
     }
 
 
