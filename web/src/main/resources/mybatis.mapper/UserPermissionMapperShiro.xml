@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.springboot.web.mapper.UserPermissionMapperShiro">
+
+    <select id="getUserWithNameAndPass" resultType="com.demo.springboot.web.entity.UserPermissionShiro"
+            parameterType="map">
+        select
+            id        as id,
+            user_id   as userId,
+            user_name as userName,
+            password,
+            user_permission
+        from user_permission t
+        where t.user_name = #{username}
+          and t.password = #{password}
+    </select>
+
+    <select id="getByUsername" resultType="com.demo.springboot.web.entity.UserPermissionShiro" parameterType="map">
+        select
+            id        as id,
+            user_id   as userId,
+            user_name as userName,
+            password,
+            user_permission
+        from user_permission t
+        where t.user_name = #{username}
+    </select>
+
+</mapper>

@@ -29,7 +29,6 @@ public class ShiroConfig {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         // 设置安全管理器
         shiroFilterFactoryBean.setSecurityManager(securityManager);
-
         //添加shiro内置过滤器，实现权限相关的url拦截
         /**
          * 常见过滤器：
@@ -40,14 +39,20 @@ public class ShiroConfig {
          * role:该资源必须得到角色权限才可以访问
          */
         Map<String, String> filterMap=new LinkedHashMap<String, String>();
-        filterMap.put("/add", "authc");
-        filterMap.put("/update", "authc");
-
+        // 可直接访问的：
         filterMap.put("/index", "anon");
+        filterMap.put("/index.html", "anon");
+        filterMap.put("/", "anon");
+        filterMap.put("/toLogin", "anon");
+        // 需认证后才可访问的：
+        filterMap.put("/user/add", "authc");
+        filterMap.put("/user/update", "authc");
         filterMap.put("/*", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
         //修改跳转的登录页面，不加此项就会跳转到login.jsp页面
-        shiroFilterFactoryBean.setLoginUrl("/user/toLogin");
+        shiroFilterFactoryBean.setLoginUrl("/toLogin");
+        // 修改没有授权跳转的页面
+        shiroFilterFactoryBean.setUnauthorizedUrl("/authorized");
         return shiroFilterFactoryBean;
     }
 

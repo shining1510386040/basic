@@ -78,7 +78,7 @@ public class RabbitConsumerInJava {
                     String exchange = envelope.getExchange();
                     String contentType = properties.getContentType();
 
-                    // ...消费消息 todo  body
+                    // ...消费消息
 
                     System.out.println(new java.lang.String(body, "utf-8"));
                     // 手动提交
