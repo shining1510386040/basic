@@ -17,6 +17,7 @@
         <module>web</module>
         <module>rabbitmq</module>
         <module>adminserver</module>
+        <module>dubbo</module>
     </modules>
 
     <properties>
