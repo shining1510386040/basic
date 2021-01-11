@@ -3,6 +3,8 @@ package com.demo.springboot.web.config;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.demo.springboot.web.intercept.LoginInterceptor;
+import com.demo.springboot.web.intercept.RequestLimitInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.ClientHttpRequestFactory;
@@ -27,6 +29,9 @@ import java.util.List;
 @Configuration
 public class MyWebMvcConfig implements WebMvcConfigurer {
 
+    @Autowired
+    private RequestLimitInterceptor requestLimitInterceptor;
+
     /**
      * @param
      * @return
@@ -39,6 +44,7 @@ public class MyWebMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
 //        添加拦截器，定义拦截url规则，并定义在拦截器链中的顺序；
 //        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns("/toLogin", "/", "index.html").order(-1);
+        registry.addInterceptor(requestLimitInterceptor).addPathPatterns("/**");
     }
 
     /**
@@ -112,7 +118,7 @@ public class MyWebMvcConfig implements WebMvcConfigurer {
      * @author Wenyi Cao
      * @version 1.0
      * @description webmvc 静态资源处理（js，css，html）
-     *
+     * <p>
      * 默认ResourceProperties：classpath:/META-INF/resources/", "classpath:/resources/",
      * "classpath:/static/", "classpath:/public/
      * @date 2020/12/29 15:14

@@ -1,0 +1,7 @@
+1.springboot中如何自定义拦截器？
+    1.1 实现HandlerInterceptor接口 或者 继承HandlerInterceptorAdapter 适配器类；
+        实现或重写的方法：
+        preHandle():目标controller方法执行前拦截
+        postHandle()：目标方法执行后视图解析执行前拦截
+        afterComplition()：整个请求完成后拦截
+    1.2 在webmvcconfig 自定义配置中添加自定义的拦截器

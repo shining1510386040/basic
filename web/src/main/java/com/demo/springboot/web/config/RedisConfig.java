@@ -32,7 +32,7 @@ public class RedisConfig {
      * @return
      * @author Wenyi Cao
      * @version 1.0
-     * @description ？？？
+     * @description redisTemplate 模板;
      * @date 2020/12/24 16:53
      */
     @Bean
