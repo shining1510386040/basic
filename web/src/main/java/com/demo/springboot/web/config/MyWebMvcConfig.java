@@ -2,6 +2,7 @@ package com.demo.springboot.web.config;
 
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.demo.springboot.web.intercept.ApiIdempotentInterceptor;
 import com.demo.springboot.web.intercept.LoginInterceptor;
 import com.demo.springboot.web.intercept.RequestLimitInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ public class MyWebMvcConfig implements WebMvcConfigurer {
     @Autowired
     private RequestLimitInterceptor requestLimitInterceptor;
 
+    @Autowired
+    private ApiIdempotentInterceptor apiIdempotentInterceptor;
+
     /**
      * @param
      * @return
@@ -44,7 +48,10 @@ public class MyWebMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
 //        添加拦截器，定义拦截url规则，并定义在拦截器链中的顺序；
 //        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns("/toLogin", "/", "index.html").order(-1);
+        // 限流拦截器，接口防刷
         registry.addInterceptor(requestLimitInterceptor).addPathPatterns("/**");
+        // 幂等性拦截器
+        registry.addInterceptor(apiIdempotentInterceptor).addPathPatterns("/**");
     }
 
     /**
@@ -98,11 +105,27 @@ public class MyWebMvcConfig implements WebMvcConfigurer {
     }
 
 
+    /**
+     * @param
+     * @return
+     * @author Wenyi Cao
+     * @version 1.0
+     * @description 同步调用远程服务RestTemplate配置
+     * @date 2021/1/12 10:52
+     */
     @Bean
     public RestTemplate restTemplate(ClientHttpRequestFactory factory) {
         return new RestTemplate(factory);
     }
 
+    /**
+     * @param
+     * @return
+     * @author Wenyi Cao
+     * @version 1.0
+     * @description http请求客户端工厂
+     * @date 2021/1/12 10:53
+     */
     @Bean
     public ClientHttpRequestFactory simpleClientHttpRequestFactory() {
         SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
