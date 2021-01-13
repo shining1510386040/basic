@@ -22,17 +22,25 @@ public class ApidempotentController {
     @Autowired
     private ApiDempotentService apiDempotentService;
 
+    @Autowired
+    private TokenService tokenService;
+
+
     /**
      * @param apiToken token
      * @return
      * @author Wenyi Cao
      * @version 1.0
-     * @description
+     * @description 幂等性接口： token 的请求只能访问一次，只是一个标识；
+     *
      * @date 2021/1/12 20:38
      */
     @GetMapping("/test")
     @ApiIdempotent
-    public ServiceResult process(@RequestHeader String apiToken) {
+    public ServiceResult process(@RequestHeader(required = false) String apiToken) {
+        // 先创建token，在处理业务
+        ServiceResult token = tokenService.createToken(apiToken);
+        // 业务方法
         String process = apiDempotentService.process();
         System.out.println("===============>>>:幂等接口测试" + process);
         return new ServiceResult();

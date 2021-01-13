@@ -17,13 +17,8 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class ApiDempotentService {
 
-    @Autowired
-    private TokenService tokenService;
 
     public String process() {
-        // 处理业务前，先生成token；
-        ServiceResult token = tokenService.createToken();
-        System.out.println("=============>>token:" + token);
         // ...do some work,,,,
         try {
             TimeUnit.SECONDS.sleep(2);
