@@ -29,7 +29,6 @@ public class HelloRestController {
     @GetMapping("/getOne/{id}")
     public String getOne(@PathVariable long id){
 
-        // todo
         return "hhaha";
     }
 }
