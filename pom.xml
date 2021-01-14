@@ -18,6 +18,7 @@
         <module>rabbitmq</module>
         <module>adminserver</module>
         <module>dubbo</module>
+        <module>dbconnector</module>
     </modules>
 
     <properties>
