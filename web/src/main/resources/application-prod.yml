@@ -48,7 +48,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     name: springboot
     password: root
-    url: jdbc:mysql://172.26.7.82:3306/springboot?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/springboot?serverTimezone=UTC
     username: root
   # spring boot 邮件的配置
   mail:
@@ -87,8 +87,8 @@ spring:
     suffix: .html
 # 阿里云oss 自定义配置
 aliyun:
-  accessKeyId: LTAI4GKjQKmd2SAL7j3m5WYT
-  accessKeySecret: wOVh0SAajIxqxGQBsnHPRfj18ADiaD
+  accessKeyId: # 使用自己的Accesskey
+  accessKeySecret: # 秘钥
   oss:
     endpoint: https://oss-cn-beijing.aliyuncs.com
     bucketName: bucket-test12138
