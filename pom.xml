@@ -19,6 +19,7 @@
         <module>adminserver</module>
         <module>dubbo</module>
         <module>dbconnector</module>
+        <module>flink-in-java</module>
     </modules>
 
     <properties>

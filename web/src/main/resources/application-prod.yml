@@ -1,3 +1,4 @@
+# 待确定。。。。。
 # 日志配置
 logging:
   level:
@@ -5,7 +6,7 @@ logging:
       demo:
         springboot:
           web:
-            mapper: debug
+            mapper: error
 # actuator 监管端点配置
 management:
   endpoint:
@@ -25,13 +26,13 @@ server:
 spring:
   application:
     name: web
-  boot:
-    admin:
-      client:
-        password: admin
-        username: admin
-        # 监管server端url
-        url: http://127.0.0.1:8001
+#  boot:
+#    admin:
+#      client:
+#        password: admin
+#        username: admin
+#        # 监管server端url
+#        url: http://127.0.0.1:8001
   # spring boot 应用级缓存
   cache:
     cache-names: accounts,orders,users
@@ -39,15 +40,15 @@ spring:
       spec: initialCapacity=10,maximumSize=500,expireAfterAccess=600s
     type: caffeine
   # spring boot mongo配置
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017/mytestdb
+#  data:
+#    mongodb:
+#      uri: mongodb://localhost:27017/mytestdb
   # mysql数据源
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     name: springboot
     password: root
-    url: jdbc:mysql://localhost:3306/springboot?serverTimezone=UTC
+    url: jdbc:mysql://172.26.7.82:3306/springboot?serverTimezone=UTC
     username: root
   # spring boot 邮件的配置
   mail:

@@ -4,13 +4,11 @@ import com.demo.springboot.web.entity.Userinfo;
 import com.demo.springboot.web.mapper.UserInfoMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.sun.org.apache.regexp.internal.RE;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Wenyi Cao

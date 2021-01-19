@@ -184,6 +184,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!--阿里云oss存储服务sdk-->
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+            <version>3.4.2</version>
+        </dependency>
 
     </dependencies>
     <dependencyManagement>
@@ -197,14 +203,63 @@
     </dependencyManagement>
 
     <build>
-        <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
-            <plugins>
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+        <!--打包后的名称-->
+        <finalName>web-service-01</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <!--插件 2.4.0版本以上才能配置docker节点-->
+                <version> 2.4.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!--spring-boot:repackage。在mvn package之后，再次打包可执行的jar/war，同时保留mvn package生成的jar/war为.origin-->
+                            <!--spring-boot:run，运行Spring Boot应用-->
+                            <!--spring-boot:start，在mvn integration-test阶段，进行Spring Boot应用生命周期的管理-->
+                            <!--spring-boot:stop，在mvn integration-test阶段，进行Spring Boot应用生命周期的管理-->
+                            <!--spring-boot:build-info，生成Actuator使用的构建信息文件build-info.properties-->
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <fork>true</fork>
+                    <!--指定主类-->
+                    <mainClass>com.demo.springboot.web.WebApplication</mainClass>
+                    <image>
+                        <!--配置镜像名称-->
+                        <name>https://hub.docker.com/myregistry/${project.name}:${project.version}</name>
+                        <!--镜像打包完成后自动推送到镜像仓库-->
+                        <publish>true</publish>
+                    </image>
+                    <docker>
+                        <!--Docker远程管理地址-->
+                        <host>http://106.14.246.252:2375</host>
+                        <!--不使用TLS访问-->
+                        <tlsVerify>false</tlsVerify>
+                        <!--Docker推送镜像仓库配置-->
+                        <publishRegistry>
+                            <!--推送镜像仓库用户名-->
+                            <username>huifeidezhu12138</username>
+                            <!--推送镜像仓库密码-->
+                            <password>wenyi123#</password>
+                            <!--推送镜像仓库地址,可以定义自己的仓库registry，这里使用docker hub官方的-->
+                            <url>https://hub.docker.com/</url>
+                        </publishRegistry>
+                    </docker>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
 </project>
