@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <title>
+        echarts柱状图
+    </title>
+    <script src="../../static/static/js/echarts.min.js"></script>
+    <script src="../../static/static/js/jquery-3.1.1.js"></script>
+</head>
+
+<body>
+<div id=app>
+
+    <div id="main" style="width: 600px;height:400px;"></div>
+
+</div>
+</body>
+<script type="text/javascript">
+
+    $(function () {
+        $.ajax({
+            url: "/echarts/histogram/data",
+            type: "get",
+            data: "",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                var dom = $("#main")[0];
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(dom);
+
+                // 指定图标的配置项和数据
+                var option = {
+                    title: {
+                        text: data.title
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'cross',
+                            label: {
+                                backgroundColor: '#6a7985'
+                            }
+                        }
+                    },
+                    // 图例，
+                    legend: {
+                        data: data.legend
+                    },
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {}
+                        }
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    // X轴 坐标，
+                    xAxis: [
+                        {
+                            type: 'category',
+                            boundaryGap: false,
+                            data: data.xaxis
+                        }
+                    ],
+                    // Y 轴
+                    yAxis: [
+                        {
+                            type: 'value'
+                        }
+                    ],
+                    // 数据，
+                    series: data.series
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            }
+        });
+    });
+
+</script>
+</html>
