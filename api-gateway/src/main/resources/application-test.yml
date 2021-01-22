@@ -1,0 +1,133 @@
+### 自定义 服务负载均衡
+uri:
+  main: lb://main-service
+  api: lb://api-service
+  plat: lb://platform-service
+server:
+  port: 9000
+spring:
+  mvc:
+    view:
+      ## gateway 是基于webflux实现的mvc，和springmvc不同；
+      suffix: .html
+  redis:
+    host: 127.0.0.1
+    database: 9
+    #password:
+    port: 6379
+  boot:
+    admin:
+      client:
+        read-timeout: 5000ms
+        # 监控的实例信息
+        instance:
+          prefer-ip: true
+        username: admin
+        password: admin
+        # admin-server 管理端地址
+        url: http://127.0.0.1:8001
+  cloud:
+    gateway:
+      # 全局跨域设置
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            ## 允许的源
+            allowedOrigins: "*"
+            ## 允许的请求方式
+            allowedMethods:
+              - GET
+              - OPTIONS
+              - PUT
+              - DELETE
+              - POST
+      #默认的过滤器链，为所有的路由增加filter过滤
+      default-filters:
+        ## 添加响应头
+        - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+        ## 为下游服务请求添加前缀
+      #        - PrefixPath=/ops
+      # 路由匹配
+        ## 为所有的路由增加重试机制 过滤器；RetryGatewayFilterFactory
+        - name: Retry
+          args:
+            retries: 3
+            statuses: BAD_GATEWAY,BAD_REQUEST
+            methods: GET,POST
+      routes:
+        #        - id: method_route
+        #          uri: http://localhost:8080
+        #          predicates:
+        #            - Method=GET,POST
+        ## 按请求路径url匹配转发
+        - id: plat_route
+          uri: ${uri.plat}
+          predicates:
+            - Path=/platform-service/plat/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 15
+            - StripPrefix=1
+        ### api-service
+        - id: api_route
+          uri: ${uri.api}
+          predicates:
+            - Path=/api-service/api/**
+          filters:
+            - name: Hystrix
+              args:
+                name: fallbackcmd-api
+                fallbackUri: forward:/fallback/api
+            #去除/api-service前缀
+            - StripPrefix=1
+        - id: main_route
+          uri: ${uri.main}
+          predicates:
+            - Path=/main-service/main/**
+          filters:
+            - name: Hystrix
+              args:
+                name: fallbackcmd-main
+                fallbackUri: forward:/fallback/main
+            #去除/main-service前缀
+            - StripPrefix=1
+            ### 请求限流过滤器
+            - name: RequestRateLimiter
+              args:
+                # redis令牌桶速率：每秒1个请求，最大15个请求每秒
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 15
+      #                keyResolver:  "#{@keyResolver}"
+      #                rate-limiter: "#{@rateLimiter}"
+      # 负载均衡配置（经由注册中心服务名生成路由，调用目标服务）
+      discovery:
+        locator:
+          lower-case-service-id: true
+          ###是否与服务发现注册中心结合使用；true开启通过注册中心的自动根据 serviceId 创建路由
+          enabled: true
+    nacos:
+      # 注册中心
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+        namespace: 0caf97c2-a750-4dcf-94af-319e0d1c8508
+        #        ##注册的服务名
+        service: ${spring.application.name}
+        ## 注册开关
+        enabled: true
+        register-enabled: true
+      # 配置中心
+      config:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+        namespace: 0caf97c2-a750-4dcf-94af-319e0d1c8508
+        ## dataId 规则：？？
+        file-extension: yml
+        ## 配置开关
+        enabled: false
+  application:
+    name: api-gateway

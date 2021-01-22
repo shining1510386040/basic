@@ -1,0 +1,27 @@
+#spring:
+#  cloud:
+#    nacos:
+#      # 注册中心
+#      discovery:
+#        server-addr: 127.0.0.1:8848
+#        username: nacos
+#        password: nacos
+#        namespace: 0caf97c2-a750-4dcf-94af-319e0d1c8508
+##        ##注册的服务名
+#        service: ${spring.application.name}
+#        ## 注册开关
+#        enabled: true
+#        register-enabled: true
+#      # 配置中心
+#      config:
+#        server-addr: 127.0.0.1:8848
+#        username: nacos
+#        password: nacos
+#        namespace: 0caf97c2-a750-4dcf-94af-319e0d1c8508
+#        ## dataId 规则：？？
+#        file-extension: yml
+#        ## 配置开关
+#        enabled: false
+#  application:
+#    name: api-gateway
+#

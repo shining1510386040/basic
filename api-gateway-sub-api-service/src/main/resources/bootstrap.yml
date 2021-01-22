@@ -1,0 +1,22 @@
+#nacos:
+#  # 注册中心
+#  discovery:
+#    password: nacos
+#    username: nacos
+#    server-addr: http://127.0.0.1:8848
+#    namespace: 0caf97c2-a750-4dcf-94af-319e0d1c8508
+#    ## 自动注册
+#    auto-register: true
+#    register:
+#      ## 开启注册开关
+#      enabled: true
+#  # 配置中心
+#  config:
+#    server-addr: http://127.0.0.1:8848
+#    username: nacos
+#    password: nacos
+#    namespace: 0caf97c2-a750-4dcf-94af-319e0d1c8508
+#    bootstrap:
+#      ##配置开关，启用配置中心
+#      enable: false
+#    auto-refresh: true

@@ -1,0 +1,22 @@
+server:
+  port: 8098
+nacos:
+  # 注册中心
+  discovery:
+    password: nacos
+    username: nacos
+    server-addr: 127.0.0.1:8848
+    namespace: 0caf97c2-a750-4dcf-94af-319e0d1c8508
+    ## 自动注册
+    auto-register: true
+    register:
+      ## 开启注册开关
+      enabled: true
+      service-name: ${spring.application.name}
+      ip: 127.0.0.1
+      port: 8098
+#      group-name:
+    cluster-name: default
+spring:
+  application:
+    name: api-service

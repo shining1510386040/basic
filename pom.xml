@@ -20,6 +20,9 @@
         <module>dubbo</module>
         <module>dbconnector</module>
         <module>flink-in-java</module>
+        <module>api-gateway</module>
+        <module>api-gateway-sub-main-service</module>
+        <module>api-gateway-sub-api-service</module>
     </modules>
 
     <properties>
@@ -28,5 +31,6 @@
         <maven.compiler.target>1.7</maven.compiler.target>
         <springboot.version>2.1.0.RELEASE</springboot.version>
         <!--<spring.version>4.1.7.RELEASE</spring.version>-->
+        <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
     </properties>
 </project>
