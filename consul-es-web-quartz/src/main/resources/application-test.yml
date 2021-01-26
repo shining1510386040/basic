@@ -1,0 +1,75 @@
+spring:
+  application:
+    name: consul-es-web-quartz
+  # 数据源配置
+  datasource:
+    password: root
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springboot?serverTimezone=UTC
+  # mvc视图模板配置
+  thymeleaf:
+    cache: true
+    suffix: .html
+    prefix: classpath:templates/
+    mode: HTML
+    enabled: true
+  boot:
+    # admin应用监控client端配置
+    admin:
+      client:
+        instance:
+          prefer-ip: true
+        url: http://127.0.0.1:8001
+        username: admin
+        password: admin
+  # es springboot配置 RestHighLevelClientConfiguration
+  elasticsearch:
+    rest:
+      connection-timeout: 1s
+      uris: http://localhost:9200
+      username:
+      password:
+      read-timeout: 30s
+  data:
+    # reactive 响应式编程es配置：ReactiveElasticsearchRestClientAutoConfiguration
+    elasticsearch:
+      client:
+        reactive:
+          connection-timeout: 1s
+          endpoints: localhost:9200
+          username:
+          password:
+    # reactive 响应式编程mongo配置：MongoReactiveAutoConfiguration
+    mongodb:
+      #      uri: mongodb://localhost/test
+      port: 27017
+      host: localhost
+      database: springboot
+      username: admin
+      password: admin
+server:
+  port: 8080
+# actuator 监管配置：web方式暴露和jmx方式暴露
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+# mybatis配置
+mybatis:
+  type-aliases-package: com.demo.springboot.consulesweb.entity
+  mapper-locations: classpath:mappers/*Mapper.xml
+# 日志配置：mybatis显示sql
+logging:
+  level:
+    com:
+      demo:
+        springboot:
+          consulesweb:
+            dao: debug

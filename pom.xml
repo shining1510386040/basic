@@ -23,6 +23,7 @@
         <module>api-gateway</module>
         <module>api-gateway-sub-main-service</module>
         <module>api-gateway-sub-api-service</module>
+        <module>consul-es-web-quartz</module>
     </modules>
 
     <properties>

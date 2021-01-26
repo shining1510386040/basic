@@ -1,0 +1,44 @@
+spring:
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      # 配置中心配置
+      config:
+        # 设置acl token值 ，注意，不同的token权限不同，有开发环境和生产环境的区别
+        #acl-token: 631fc972-f559-caa6-7f90-d370a9cc7094
+        enabled: true #false禁用Consul配置，默认true
+        # 设置配置的基本文件夹，默认值 config 可以理解为配置文件所在的最外层文件夹
+        prefix: config-test
+        # 设置应用的文件夹名称，默认值 application 一般建议设置为微服务应用名称
+#        default-context: consul-es-web-quartz
+        # 配置环境分隔符，默认值 "," 和 default-context 配置项搭配
+        # 例如应用 orderService 分别有环境 default、dev、test、prod
+        # 只需在 config 文件夹下创建 orderService、orderService-dev、orderService-test、orderService-prod 文件夹即可
+#        profile-separator: '**'
+        format: YAML    # 表示consul上面文件的格式 有四种 YAML PROPERTIES KEY-VALUE FILES
+        #data-key: configuration    #表示consul上面的KEY值(或者说文件的名字) 默认是data
+        data-key: data    #表示consul上面的KEY值(或者说文件的名字) 默认是data
+        #prefix设置配置值的基本文件夹
+        #defaultContext设置所有应用程序使用的文件夹名称
+        #profileSeparator设置用于使用配置文件在属性源中分隔配置文件名称的分隔符的值
+        watch:
+          # 是否开启自动刷新，默认值 true 开启
+          enabled: true
+          # 刷新频率，单位：毫秒，默认值 1000
+          delay: 1000
+      discovery:
+        # 启用服务发现
+        enabled: true
+        service-name: consul-es-web-serivce
+        # 设置acl token值,注意，不同的token权限不同，有开发环境和生产环境的区别
+        #        acl-token: 631fc972-f559-caa6-7f90-d370a9cc7094
+        #acl-token: ccadmin!@#QWE
+        #健康检查超时后取消注册
+        health-check-critical-timeout: 10s
+        # 启用服务注册
+        register: false
+        # 服务停止时取消注册
+        deregister: true
+        # 表示注册时使用IP而不是hostname
+        prefer-ip-address: true
