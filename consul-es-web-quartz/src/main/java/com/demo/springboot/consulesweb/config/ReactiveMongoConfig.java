@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 @Configuration
 public class ReactiveMongoConfig {
 
-    @Bean
-    public MongoClient reactiveStreamsMongoClient(MongoProperties properties, Environment environment, ObjectProvider<MongoClientSettingsBuilderCustomizer> builderCustomizers, ObjectProvider<MongoClientSettings> settings) {
-        ReactiveMongoClientFactory factory = new ReactiveMongoClientFactory(properties, environment, (List) builderCustomizers.orderedStream().collect(Collectors.toList()));
-        return factory.createMongoClient(settings.getIfAvailable());
-    }
+//    @Bean
+//    public MongoClient reactiveStreamsMongoClient(MongoProperties properties, Environment environment, ObjectProvider<MongoClientSettingsBuilderCustomizer> builderCustomizers, ObjectProvider<MongoClientSettings> settings) {
+//        ReactiveMongoClientFactory factory = new ReactiveMongoClientFactory(properties, environment, (List) builderCustomizers.orderedStream().collect(Collectors.toList()));
+//        return factory.createMongoClient(settings.getIfAvailable());
+//    }
 }

@@ -32,44 +32,85 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.elasticsearch.client</groupId>
-                    <artifactId>elasticsearch-rest-high-level-client</artifactId>
-                </exclusion>
-            </exclusions>
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<groupId>org.elasticsearch.client</groupId>-->
+                    <!--<artifactId>elasticsearch-rest-high-level-client</artifactId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.elasticsearch.client</groupId>-->
+            <!--<artifactId>elasticsearch-rest-client</artifactId>-->
+            <!--<version>7.6.1</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.elasticsearch.client</groupId>-->
+            <!--<artifactId>elasticsearch-rest-high-level-client</artifactId>-->
+            <!--<version>7.6.1</version>-->
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<artifactId>elasticsearch-rest-client</artifactId>-->
+                    <!--<groupId>org.elasticsearch.client</groupId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.elasticsearch</groupId>-->
+            <!--<artifactId>elasticsearch</artifactId>-->
+            <!--<version>7.6.1</version>-->
+        <!--</dependency>-->
+        <!--spring data jdbc 的支持-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jdbc</artifactId>
+        </dependency>
+        <!--spring data jpa 的支持-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <!--spring data rest 的支持；数据存储作为restful资源接口-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-rest</artifactId>
+        </dependency>
+        <!--spring data mongo 的支持-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+        <!--spring data redis 的支持-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.elasticsearch.client</groupId>
-            <artifactId>elasticsearch-rest-client</artifactId>
-            <version>7.6.1</version>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
         </dependency>
+        <!--spring data k-v 的支持-->
+        <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-keyvalue -->
         <dependency>
-            <groupId>org.elasticsearch.client</groupId>
-            <artifactId>elasticsearch-rest-high-level-client</artifactId>
-            <version>7.6.1</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>elasticsearch-rest-client</artifactId>
-                    <groupId>org.elasticsearch.client</groupId>
-                </exclusion>
-            </exclusions>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-keyvalue</artifactId>
         </dependency>
+        <!--spring data ldap目录搜索 的支持-->
         <dependency>
-            <groupId>org.elasticsearch</groupId>
-            <artifactId>elasticsearch</artifactId>
-            <version>7.6.1</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-ldap</artifactId>
         </dependency>
-        <!-- mongo nosql-->
+
+        <!-- mongo nosql reactive响应式编程-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.mongodb</groupId>
-                    <artifactId>mongodb-driver-core</artifactId>
-                </exclusion>
-            </exclusions>
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<groupId>org.mongodb</groupId>-->
+                    <!--<artifactId>mongodb-driver-core</artifactId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
         <!--<dependency>-->
@@ -77,12 +118,12 @@
             <!--<artifactId>mongo-java-driver</artifactId>-->
             <!--<version>3.12.4</version>-->
         <!--</dependency>-->
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongodb-driver-sync</artifactId>
-            <version>4.1.1</version>
-            <scope>provided</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.mongodb</groupId>-->
+            <!--<artifactId>mongodb-driver-sync</artifactId>-->
+            <!--<version>4.1.1</version>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
         <!--定时任务-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -152,6 +193,19 @@
             <artifactId>spring-cloud-context</artifactId>
             <version>2.2.3.RELEASE</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.projectreactor.netty/reactor-netty -->
+        <dependency>
+            <groupId>io.projectreactor.netty</groupId>
+            <artifactId>reactor-netty</artifactId>
+        </dependency>
+
+        <!--web flux 响应式编程-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>

@@ -23,24 +23,26 @@ spring:
         url: http://127.0.0.1:8001
         username: admin
         password: admin
-  # es springboot配置 RestHighLevelClientConfiguration
-  elasticsearch:
-    rest:
-      connection-timeout: 1s
-      uris: http://localhost:9200
-      username:
-      password:
-      read-timeout: 30s
+#  # es springboot配置 ElasticsearchRestClientAutoConfiguration
+#  elasticsearch:
+#    rest:
+#      connection-timeout: 1s
+#      uris: http://localhost:9200
+#      username:
+#      password:
+#      read-timeout: 30s
   data:
-    # reactive 响应式编程es配置：ReactiveElasticsearchRestClientAutoConfiguration
+    # es配置：ReactiveElasticsearchRestClientAutoConfiguration
     elasticsearch:
+      repositories:
+        enabled: true
       client:
         reactive:
           connection-timeout: 1s
           endpoints: localhost:9200
           username:
           password:
-    # reactive 响应式编程mongo配置：MongoReactiveAutoConfiguration
+    # mongo配置：MongoReactiveAutoConfiguration or MongoAutoConfiguration
     mongodb:
       #      uri: mongodb://localhost/test
       port: 27017
@@ -48,6 +50,19 @@ spring:
       database: springboot
       username: admin
       password: admin
+  # redis配置： RedisAutoConfiguration
+  redis:
+    database: 9
+    host: 127.0.0.1
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1
+        min-idle: 0
+    port: 6379
+    timeout: 6000
+    password:
 server:
   port: 8080
 # actuator 监管配置：web方式暴露和jmx方式暴露
@@ -73,3 +88,11 @@ logging:
         springboot:
           consulesweb:
             dao: debug
+
+# 自定义配置 es
+#aliyun:
+#  es:
+#    url: localhost:9200
+#    username:
+#    password:
+

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 /**
  * @author Wenyi Cao
  * @version 1.0
@@ -21,8 +23,6 @@ import reactor.core.publisher.Mono;
 public class PersonController {
 
     private PersonRepository personRepository;
-
-//    private WebClient webClient;
 
     /**
      * 构造器注入
@@ -40,27 +40,11 @@ public class PersonController {
      * @date 2021/1/26 19:07
      */
     @PostMapping("/save")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Person> add(@RequestBody Person person) {
-        return personRepository.save(person);
+    public Person add(Person person) {
+        Mono<Person> save = personRepository.save(person);
+        Person block = save.block();
+        return block;
     }
-
-//    @GetMapping("/insertWith")
-//    public String insertOne() {
-//        System.out.println("添加第一条数据");
-//        Mono<Person> mono = webClient
-//                .post()
-//                .uri("http://localhost:8080/people")
-//                //使用2个参数的构造器
-//                .body(Mono.just(new Person("wyf", 35)), Person.class)
-//                .retrieve()
-//                .bodyToMono(Person.class);
-//        //使用block()方法订阅Mono并将其变为同步
-//        Person person = mono.block();
-//        System.out.println(person);
-//        //使用block()方法订阅Mono并将其变为同步
-//        return person.getId();
-//    }
 
     /**
      * @param
@@ -71,8 +55,9 @@ public class PersonController {
      * @date 2021/1/26 19:07
      */
     @GetMapping("/get/{id}")
-    public Mono<Person> getById(@PathVariable String id) {
-        return personRepository.findById(id);
+    public Person getById(@PathVariable String id) {
+        Mono<Person> data = personRepository.findById(id);
+        return data.block();
     }
 
     /**
@@ -83,9 +68,11 @@ public class PersonController {
      * @description 查看所有
      * @date 2021/1/26 19:07
      */
-    @GetMapping
-    public Flux<Person> list() {
-        return personRepository.findAll();
+    @GetMapping("/list")
+    public List<Person> list() {
+        Flux<Person> data = personRepository.findAll();
+
+        return data.collectList().block();
     }
 
     /**
@@ -96,9 +83,9 @@ public class PersonController {
      * @description 按id删除
      * @date 2021/1/26 19:08
      */
-    @DeleteMapping("/delete/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Mono<Void> delete(@PathVariable("id") String id) {
-        return personRepository.deleteById(id);
+    @PostMapping("/delete/{id}")
+    public void delete(@PathVariable("id") String id) {
+        // todo ...为啥删除不了呢？？？
+        Mono<Void> data = personRepository.deleteById(id);
     }
 }

@@ -32,6 +32,9 @@ public class OrderController {
      */
     @GetMapping("/getOne/{id}")
     public Object getOne(@PathVariable String id) {
+        // Request processing failed; nested exception is org.springframework.data.mongodb.
+        // UncategorizedMongoDbException：认证问题，对应的db下要有对应的账号
+        // db.createUser({user:'admin', pwd:'123456', roles:[{role:'userAdminAnyDatabase', db:'admin'}] })
         Mono<Order> orderMono = orderRepository.findById(id);
 //        Order block = orderMono.block();
         return orderMono;

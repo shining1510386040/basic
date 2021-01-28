@@ -29,3 +29,34 @@
     
     bootstrap.yml 优先级高于application.yml
     
+    3.Spring Data 项目？
+        一个数据访问的技术框架：关系型数据库、非关系型数据库、map-reduce 框架、基于云的数据服务
+        主要子模块：
+        Spring Data Commons - Core Spring concepts underpinning every Spring Data module.
+        公共组件：核心接口；仓储接口：(顶级接口)Repository<T,ID>  --> (增删改查)CrudRepository<T, ID>  -->  （分页+排序）PagingAndSortingRepository<T, ID>
+        Spring Data JDBC - Spring Data repository support for JDBC.
+        jdbc的支持：
+        Spring Data JPA - Spring Data repository support for JPA.
+        jpa的支持：
+        Spring Data KeyValue - Map based repositories and SPIs to easily build a Spring Data module for key-value stores.
+        基于Map的实现KV存储：
+        Spring Data LDAP - Spring Data repository support for Spring LDAP.
+        LDAP的支持：目录数据库，方便查询的，类似于solar
+        Spring Data MongoDB - Spring based, object-document support and repositories for MongoDB.
+        mongodb的支持：
+        Spring Data Redis - Easy configuration and access to Redis from Spring applications.
+        redis的支持：
+        Spring Data REST - Exports Spring Data repositories as hypermedia-driven RESTful resources.
+        restful接口支持：
+        
+        Spring Data Elasticsearch - Spring Data module for Elasticsearch.
+        elasticsearch的支持：
+        Spring Data Neo4j - Spring-based, object-graph support and repositories for Neo4j.
+        neo4j图数据库的支持：
+        Spring Data for Apache Solr - Easy configuration and access to Apache Solr for your search-oriented Spring applications.
+        solr搜索的支持：
+        
+        核心接口：
+        仓储接口：(顶级接口)Repository<T,ID>  --> (增删改查)CrudRepository<T, ID>  -->  （分页+排序）PagingAndSortingRepository<T, ID>
+        
+        
