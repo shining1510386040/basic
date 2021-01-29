@@ -23,14 +23,14 @@ spring:
         url: http://127.0.0.1:8001
         username: admin
         password: admin
-#  # es springboot配置 ElasticsearchRestClientAutoConfiguration
-#  elasticsearch:
-#    rest:
-#      connection-timeout: 1s
-#      uris: http://localhost:9200
-#      username:
-#      password:
-#      read-timeout: 30s
+  #  # es springboot配置 ElasticsearchRestClientAutoConfiguration
+  #  elasticsearch:
+  #    rest:
+  #      connection-timeout: 1s
+  #      uris: http://localhost:9200
+  #      username:
+  #      password:
+  #      read-timeout: 30s
   data:
     # es配置：ReactiveElasticsearchRestClientAutoConfiguration
     elasticsearch:
@@ -63,6 +63,11 @@ spring:
     port: 6379
     timeout: 6000
     password:
+  # jpa配置：显示sql，自动创建表
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
 server:
   port: 8080
 # actuator 监管配置：web方式暴露和jmx方式暴露
@@ -95,4 +100,3 @@ logging:
 #    url: localhost:9200
 #    username:
 #    password:
-
