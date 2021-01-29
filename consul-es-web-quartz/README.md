@@ -97,3 +97,17 @@ bootstrap.yml 优先级高于application.yml
     仓储实体要求：一个@Id（org.springframework.data.annotation.Id 不是jpa的）即可
     
 5.quartz 定时任务？
+
+spring 分别对Quartz的三个方面，Job & JobDetail,Trigger和Scheduler进行了封装,
+Spring Quartz 和 Spring Scheduling是任务调度的两种方案，
+两者在使用上完全没有关系，
+Spring Scheduling使用的是JDK的类库实现的任务调度,
+Spring Quartz对Quartz的封装如下：
+
+    Job -> QuartzJobBean
+    JobDetail -> JobDetailFactoryBean + MethodInvokeingJobDetailFactoryBean
+    JobFactory -> SpringBeanJobFactory
+    Trigger -> CronTriggerFactoryBean & SimpleTriggerFactoryBean
+    Scheduler -> SchedulerFactoryBean
+    ThreadPool -> LocalTaskExecutorThreadPool 用于使用java.util.concurrent.Executor来实现线程池；
+    ClassLoaderHelper -> ResourceLoaderClassLoaderHelper

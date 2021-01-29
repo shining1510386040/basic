@@ -68,6 +68,36 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+  # quartz 定时任务配置：QuartzAutoConfiguration
+  quartz:
+    auto-startup: true
+    # quartz.properties 属性配置
+    properties:
+      org:
+        quartz:
+          ## 调度器
+          scheduler:
+            instanceName: clusteredScheduler
+            instanceId: AUTO
+          ## 任务数据存储
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            ## 表前缀
+            tablePrefix: QRTZ_
+            ## 多节点定时任务？
+            isClustered: true
+            clusterCheckinInterval: 10000
+            useProperties: false
+          ## 任务线程池
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+    # 任务数据持久化方式：默认为内存memory，
+    job-store-type: jdbc
+    scheduler-name: quartzScheduler
 server:
   port: 8080
 # actuator 监管配置：web方式暴露和jmx方式暴露
