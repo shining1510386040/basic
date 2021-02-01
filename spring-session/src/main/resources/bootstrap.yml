@@ -1,0 +1,24 @@
+spring:
+  cloud:
+    consul:
+      host: 106.14.246.252
+      port: 8600
+      # 注册中心配置
+      discovery:
+        health-check-path: /actuator/health
+        service-name: spring-session
+        ## 开启注册
+        register: true
+        ## 开启服务发现
+        enabled: true
+        ## 注册时使用ip而非host
+        prefer-ip-address: true
+#监管端点配置
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"

@@ -24,6 +24,8 @@
         <module>api-gateway-sub-main-service</module>
         <module>api-gateway-sub-api-service</module>
         <module>consul-es-web-quartz</module>
+        <module>spring-session</module>
+        <module>spring-secruity</module>
     </modules>
 
     <properties>
