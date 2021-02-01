@@ -111,3 +111,10 @@ Spring Quartz对Quartz的封装如下：
     Scheduler -> SchedulerFactoryBean
     ThreadPool -> LocalTaskExecutorThreadPool 用于使用java.util.concurrent.Executor来实现线程池；
     ClassLoaderHelper -> ResourceLoaderClassLoaderHelper
+6.服务注册不到consul注册中心的问题？
+    1.consul 和spring boot的版本不兼容导致的
+    2.主要是spring boot和spring cloud的版本不兼容导致的；
+    最新的版本兼容说明参考网站：https://start.spring.io/actuator/info
+    具体的细粒度版本依赖关系：https://blog.csdn.net/qq_47759220/article/details/109351733?ops_request_misc=%25257B%252522request%25255Fid%252522%25253A%252522161192128716780262527445%252522%25252C%252522scm%252522%25253A%25252220140713.130102334..%252522%25257D&request_id=161192128716780262527445&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduend~default-3-109351733.pc_v2_rank_blog_default&utm_term=springboot%25E5%2592%258Cspringcloud%25E7%2589%2588%25E6%259C%25AC%25E5%25AF%25B9%25E5%25BA%2594%25E5%2585%25B3%25E7%25B3%25BB
+    
+ 

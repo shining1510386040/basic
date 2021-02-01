@@ -100,17 +100,7 @@ spring:
     scheduler-name: quartzScheduler
 server:
   port: 8080
-# actuator 监管配置：web方式暴露和jmx方式暴露
-management:
-  server:
-    port: 8081
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  endpoint:
-    health:
-      show-details: always
+
 # mybatis配置
 mybatis:
   type-aliases-package: com.demo.springboot.consulesweb.entity
