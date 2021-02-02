@@ -1,0 +1,13 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: sentinel
+  cloud:
+    # 限流组件sentinel配置SentinelAutoConfiguration
+    sentinel:
+      enabled: true
+      transport:
+        dashboard: localhost:8080
+        heartbeat-interval-ms: 500
+      eager: true

@@ -26,6 +26,7 @@
         <module>consul-es-web-quartz</module>
         <module>spring-session</module>
         <module>spring-secruity</module>
+        <module>sentinel</module>
     </modules>
 
     <properties>
