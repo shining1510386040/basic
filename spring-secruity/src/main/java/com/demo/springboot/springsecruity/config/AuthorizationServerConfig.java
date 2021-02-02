@@ -67,10 +67,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(ClientDetailsServiceConfigurer clients)
             throws Exception {
+//        clients.jdbc().withClient();
         clients.inMemory()
                 .withClient("password")
                 //授权模式为password和refresh_token两种
-                .authorizedGrantTypes("password", "refresh_token")
+                .authorizedGrantTypes("authorization_code", "password", "refresh_token")
                 // 配置access_token的过期时间
                 .accessTokenValiditySeconds(1800)
                 //配置资源id
