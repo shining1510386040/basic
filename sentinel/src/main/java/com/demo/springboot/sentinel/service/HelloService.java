@@ -40,10 +40,26 @@ public class HelloService {
     }
 
 
+    /**
+     * @param
+     * @return
+     * @author Wenyi Cao
+     * @version 1.0
+     * @description 熔断处理
+     * @date 2021/2/3 15:08
+     */
     public String circuitBreakerFallback(String name) {
         return "服务异常，熔断降级, 请稍后重试!";
     }
 
+    /**
+     * @param
+     * @return
+     * @author Wenyi Cao
+     * @version 1.0
+     * @description 限流处理
+     * @date 2021/2/3 15:08
+     */
     public String sayHelloExceptionHandler(String name, BlockException ex) {
         return "访问过快，限流降级, 请稍后重试!";
     }

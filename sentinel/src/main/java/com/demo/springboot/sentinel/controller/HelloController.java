@@ -26,7 +26,8 @@ public class HelloController {
     @SentinelResource(value = "hello")
     public String sayHello() {
 
-        return "hello sentinel";
+        String s = helloService.sayHello("你好。限流组件。");
+        return "hello sentinel" + s;
     }
     // ...
 }
