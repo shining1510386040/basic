@@ -101,7 +101,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-ldap</artifactId>
         </dependency>
-
+        <!--嵌入式的ldap服务端，仅在测试时使用，生产上会部署ldap服务端-->
+        <dependency>
+            <groupId>com.unboundid</groupId>
+            <artifactId>unboundid-ldapsdk</artifactId>
+            <scope>test</scope>
+        </dependency>
         <!-- mongo nosql reactive响应式编程-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

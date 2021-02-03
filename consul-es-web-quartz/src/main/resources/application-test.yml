@@ -98,6 +98,16 @@ spring:
     # 任务数据持久化方式：默认为内存memory，
     job-store-type: jdbc
     scheduler-name: quartzScheduler
+  # 轻量级目录服务
+  ldap:
+#    # 嵌入式ldap配置:EmbeddedLdapAutoConfiguration
+#    embedded:
+#      ldif: classpath:ldap-server.ldif
+#      base-dn: dc=didispace,dc=com
+    urls: ldap://localhost:389
+    base: dc=maxcrc,dc=com
+    username: maxcrc
+    password: secret
 server:
   port: 8080
 
