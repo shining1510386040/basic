@@ -27,6 +27,8 @@
         <module>spring-session</module>
         <module>spring-secruity</module>
         <module>sentinel</module>
+        <module>spring-cloud-openfeign</module>
+        <module>commons-api</module>
     </modules>
 
     <properties>

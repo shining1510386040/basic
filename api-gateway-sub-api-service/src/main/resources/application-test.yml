@@ -14,7 +14,7 @@ nacos:
       enabled: true
       service-name: ${spring.application.name}
       ip: 127.0.0.1
-      port: 8098
+      port: ${server.port}
 #      group-name:
     cluster-name: default
 spring:
