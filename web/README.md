@@ -86,6 +86,53 @@
         </configuration>
     </plugin>       
     
+   =======================>>>>
+   如何自定义endpoint？
+   
+   解析：
+   类上：
+   @Endpoint 	该注解的类可以通过http查看也可以通过jmx查看，他是在两个地方注册 	相当于springmvc中的RestController和JMX中MBean的集合
+   @JmxEndpoint 	该注解的类开放的是JMX接口 	相当于JMX中的MBean
+   @WebEndpoint 	该注解的类开饭的是http接口 	相当于mvc当中的RestController
+   方法上：
+   @WriteOperation 	http-POST请求 	相当于mvc中的@PostMapping
+   @ReadOperation 	http- GET请求 	相当于mvc中的@GetMapping
+   @DeleteOpretation 	http- DELETE请求 	相当于mvc中的@DeleteMapping
+   
+   思路：
+   1.写一个自定义的endpoint 类：
+   2.@Bean的方式交给IOC容器
+   
+   测试：
+   
+
+    curl -X GET http://localhost:8080/actuator/endpointCustom?content=endpointGet
+
+    你请求的内容: endpointGet
+
+    curl -X POST http://localhost:8080/actuator/endpointCustom?content=endpointPost
+
+    你写的内容: endpointPost
+
+    curl -X DELETE http://localhost:8080/actuator/endpointCustom?content=endpointDELETE
+
+    你删除的内容：endpointDELETE
+
+==============================================》》》》
+    如何自定义健康检查？
     
-             
-    
+    解析：
+    HealthEndPoint：
+       接口：HealthIndicator
+       实现类：
+        xxxHealthIndicator
+        例如：DataSourceHealthIndicator：db
+              RedisHealthIndicator：redis
+              MongoHealthIndicator：mongo
+              DiskSpaceHealthIndicator:磁盘空间
+              MailHealthIndicator：邮件
+              ElasticsearchJestHealthIndicator：es
+              。。。。
+     思路：
+     自定义一个xxxHealthIndicator @component 交给spring处理
+       实现HealthIndicator接口或继承AbstractHealthIndicator抽象类
