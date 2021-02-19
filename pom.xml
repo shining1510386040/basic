@@ -29,6 +29,7 @@
         <module>sentinel</module>
         <module>spring-cloud-openfeign</module>
         <module>commons-api</module>
+        <module>spring-cloud-seuth</module>
     </modules>
 
     <properties>
