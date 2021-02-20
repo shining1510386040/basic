@@ -21,3 +21,16 @@ zipkin-server：zipkin 全链路追踪，server管理端;
 zipkin :cs模式：
 zipkin-server 端：可以java -jar的方式运行；
 zipkin-client端：生产追踪日志的一端
+
+例如：启动命令
+java -jar zipkin.jar --zipkin.collector.rabbitmq.addresses=localhost --zipkin.storage.type=mysql 
+--zipkin.storage.mysql.host=localhost --zipkin.storage.mysql.port=3306 --zipkin.storage.mysql.username=root 
+--zipkin.storage.mysql.password=root --zipkin.storage.mysql.db=springboot
+
+
+============================》》》
+如何将span 存储在mysql 持久化？
+如何从rabbitMQ中消费span消息？
+
+java -jar xxx   启动参数。。。
+

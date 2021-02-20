@@ -1,6 +1,3 @@
-spring:
-  application:
-    name: zipkin-service
 server:
   port: 9411
 management:
@@ -8,3 +5,11 @@ management:
     web:
       server:
         auto-time-requests: false
+spring:
+  application:
+    name: zipkin-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/springboot?serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
