@@ -51,11 +51,11 @@ public class OrderServiceImpl {
     public String createOrder() {
 
         //第一个数据采用随机数，保证第二次能执行
-        String sql1 = "insert into `order`(id,user_id,product_id,count,money,status) values(2,2,2347,23,100,0)";
+        String sql1 = "insert into `order`(id,user_id,product_id,count,money,status) values(3,2,2347,23,100,0)";
         String sql2 = "insert into account(id,user_id,total,used,residue,frozen) values(2,2,2345,0,100,0) ";
         jdbcTemplate1.execute(sql1);
         //第二条插入语句第二次执行时将报错，回滚
-//        int i = 1 / 0;
+        int i = 1 / 0;
         jdbcTemplate2.execute(sql2);
         return "test ok...";
     }

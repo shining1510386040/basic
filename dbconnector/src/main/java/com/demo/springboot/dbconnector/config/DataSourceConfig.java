@@ -37,6 +37,7 @@ public class DataSourceConfig {
     public DataSource systemDataSource(Environment env) {
         AtomikosDataSourceBean ds = new AtomikosDataSourceBean();
         Properties prop = build(env, "spring.datasource.druid.database1.");
+        // 设置xa数据源类型
         ds.setXaDataSourceClassName("com.alibaba.druid.pool.xa.DruidXADataSource");
         ds.setUniqueResourceName("DataSource1");
         ds.setPoolSize(5);

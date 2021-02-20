@@ -43,6 +43,14 @@ public class TransactionManagerConfig {
         return userTransactionManager;
     }
 
+    /**
+     * @author Wenyi Cao
+     * @version 1.0
+     * @description 配置jta事务管理器
+     * @date 2021/2/20 9:43
+     * @param
+     * @return
+     */
     @Bean(name = "transactionManager")
     @DependsOn({"userTransaction", "atomikosTransactionManager"})
     public JtaTransactionManager transactionManager() throws Throwable {
@@ -77,14 +85,16 @@ public class TransactionManagerConfig {
      * @return
      * @author Wenyi Cao
      * @version 1.0
-     * @description 代理到ServiceImpl的Bean
+     * @description 设置 代理到ServiceImpl 的Bean：aop的代理模式
      * @date 2021/2/19 19:39
      */
     @Bean
     public BeanNameAutoProxyCreator transactionAutoProxy() {
         BeanNameAutoProxyCreator transactionAutoProxy = new BeanNameAutoProxyCreator();
         transactionAutoProxy.setProxyTargetClass(true);
+        // 要代理的bean匹配
         transactionAutoProxy.setBeanNames("*ServiceImpl");
+        // 代理事务拦截
         transactionAutoProxy.setInterceptorNames("transactionInterceptor");
         return transactionAutoProxy;
     }

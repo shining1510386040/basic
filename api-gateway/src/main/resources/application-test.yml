@@ -46,8 +46,8 @@ spring:
         ## 添加响应头
         - AddResponseHeader=X-Response-Default-Foo, Default-Bar
         ## 为下游服务请求添加前缀
-      #        - PrefixPath=/ops
-      # 路由匹配
+        #        - PrefixPath=/ops
+        # 路由匹配
         ## 为所有的路由增加重试机制 过滤器；RetryGatewayFilterFactory
         - name: Retry
           args:
@@ -59,6 +59,12 @@ spring:
         #          uri: http://localhost:8080
         #          predicates:
         #            - Method=GET,POST
+        - id: app_route
+          uri: http://localhost:8080
+          predicates:
+            - Path=/spring-cloud-seuth-service/app/**
+          filters:
+            - StripPrefix=1
         ## 按请求路径url匹配转发
         - id: plat_route
           uri: ${uri.plat}
@@ -117,8 +123,8 @@ spring:
         #        ##注册的服务名
         service: ${spring.application.name}
         ## 注册开关
-        enabled: true
-        register-enabled: true
+        enabled: false
+        register-enabled: false
       # 配置中心
       config:
         server-addr: 127.0.0.1:8848
@@ -131,3 +137,11 @@ spring:
         enabled: false
   application:
     name: api-gateway
+  zipkin:
+    # zipkin-service 管理端url
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      # 采样率 100%
+      probability: 1.0
+      rate: 1

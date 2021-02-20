@@ -30,6 +30,7 @@
         <module>spring-cloud-openfeign</module>
         <module>commons-api</module>
         <module>spring-cloud-seuth</module>
+        <module>zipkin-service</module>
     </modules>
 
     <properties>
