@@ -7,6 +7,11 @@ spring:
     username: root
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/springboot?serverTimezone=UTC
+  #    ## 人大金仓数据源
+  #    url: jdbc:kingbase8://127.0.0.1:54321/TEST
+  #    username: SYSTEM #e789e20acb9d1cad # system
+  #    password: 123456 #9f1dea4fdfa1a8f4 # 123456
+  #    driver-class-name: com.kingbase8.Driver
   # mvc视图模板配置
   thymeleaf:
     cache: true
@@ -68,6 +73,9 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.Kingbase8Dialect
   # quartz 定时任务配置：QuartzAutoConfiguration
   quartz:
     auto-startup: true
@@ -100,10 +108,10 @@ spring:
     scheduler-name: quartzScheduler
   # 轻量级目录服务
   ldap:
-#    # 嵌入式ldap配置:EmbeddedLdapAutoConfiguration
-#    embedded:
-#      ldif: classpath:ldap-server.ldif
-#      base-dn: dc=didispace,dc=com
+    #    # 嵌入式ldap配置:EmbeddedLdapAutoConfiguration
+    #    embedded:
+    #      ldif: classpath:ldap-server.ldif
+    #      base-dn: dc=didispace,dc=com
     urls: ldap://localhost:389
     base: dc=maxcrc,dc=com
     username: maxcrc

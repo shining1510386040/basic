@@ -2,6 +2,7 @@ package com.demo.springboot.web.controller;
 
 import com.demo.springboot.web.cacheTraditional.AccountService;
 import com.demo.springboot.web.entity.Account;
+import com.demo.springboot.web.mapper.QueryDao;
 import com.demo.springboot.web.service.QueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +31,14 @@ public class QueryController {
     @Autowired
     private AccountService accountService;
 
+    @Autowired
+    private QueryDao queryDao;
+
+    @GetMapping("/test")
+    public Object getOne() {
+        return queryDao.listData();
+    }
+
     @GetMapping("/getAccount")
     public List<Map<String, Object>> getAccount(@RequestParam String username) {
         List<Map<String, Object>> accountByUserName = queryService.getAccountByUserName(username);
@@ -43,7 +52,7 @@ public class QueryController {
     }
 
     @GetMapping("/getAccountTra/reload")
-    public void evictCacheByKey(String username){
+    public void evictCacheByKey(String username) {
         accountService.reload(username);
     }
 }
