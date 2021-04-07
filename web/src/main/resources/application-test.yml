@@ -95,8 +95,8 @@ spring:
     suffix: .html
 # 阿里云oss 自定义配置
 aliyun:
-  accessKeyId: LTAI4GKjQKmd2SAL7j3m5WYT
-  accessKeySecret: wOVh0SAajIxqxGQBsnHPRfj18ADiaD
+  accessKeyId: #自己的accessKey
+  accessKeySecret: #自己的accessSecret
   oss:
     endpoint: https://oss-cn-beijing.aliyuncs.com
     bucketName: bucket-test12138
