@@ -1,0 +1,4 @@
+1.@Conditional注解 根据条件注入bean
+2.@Quailfier 指定要注入哪个名称的Bean
+（Spring 中 已经允许包含相同类型的Bean了
+）

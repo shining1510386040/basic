@@ -23,6 +23,10 @@ mybatis:
 server:
   port: 8080
 spring:
+  devtools:
+    restart:
+      ## 开启热部署，原理：另一个ClassLoader加载会更改的类，称为restart ClassLoader
+      enabled: true
   application:
     name: web
   boot:
@@ -44,11 +48,16 @@ spring:
       uri: mongodb://localhost:27017/mytestdb
   # mysql数据源
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    name: springboot
-    password: root
-    url: jdbc:mysql://localhost:3306/springboot?serverTimezone=UTC
-    username: root
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    name: springboot
+#    password: root
+#    url: jdbc:mysql://localhost:3306/springboot?serverTimezone=UTC
+#    username: root
+    ## 人大金仓数据源
+    url: jdbc:kingbase8://47.96.100.96:54321/TEST
+    username: SYSTEM #e789e20acb9d1cad # 注意大小写
+    password: 123456 #9f1dea4fdfa1a8f4 # 123456
+    driver-class-name: com.kingbase8.Driver
   # spring boot 邮件的配置
   mail:
     host: smtp.163.com
@@ -86,9 +95,12 @@ spring:
     suffix: .html
 # 阿里云oss 自定义配置
 aliyun:
-  accessKeyId: # 使用自己的accessKey
-  accessKeySecret: #秘钥
+  accessKeyId: LTAI4GKjQKmd2SAL7j3m5WYT
+  accessKeySecret: wOVh0SAajIxqxGQBsnHPRfj18ADiaD
   oss:
     endpoint: https://oss-cn-beijing.aliyuncs.com
     bucketName: bucket-test12138
     urlPrefix: https://bucket-test12138.oss-cn-beijing.aliyuncs.com/
+# 策略开关-注入不同的bean实现
+stragety:
+  type: vip1

@@ -1,6 +1,7 @@
 package com.demo.springboot.web.controller;
 
 import com.demo.springboot.web.cacheTraditional.AccountService;
+import com.demo.springboot.web.common.beanDI.VipContext;
 import com.demo.springboot.web.entity.Account;
 import com.demo.springboot.web.mapper.QueryDao;
 import com.demo.springboot.web.service.QueryService;
@@ -32,11 +33,27 @@ public class QueryController {
     private AccountService accountService;
 
     @Autowired
+    private VipContext vipContext;
+
+    @Autowired
     private QueryDao queryDao;
 
     @GetMapping("/test")
     public Object getOne() {
         return queryDao.listData();
+    }
+
+    /**
+     * @param
+     * @return
+     * @author Wenyi Cao
+     * @version 1.0
+     * @description 策略模式测试
+     * @date 2021/2/24 14:55
+     */
+    @GetMapping("/stragety")
+    public Object getPrice() {
+        return vipContext.getVipPrice(200.89d);
     }
 
     @GetMapping("/getAccount")

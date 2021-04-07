@@ -1,0 +1,11 @@
+server:
+  port: 9990
+spring:
+  application:
+    name: mechant-app-service
+# 微信支付参数配置
+wx:
+  merchantId: aaa
+  merchantSerialNumber: 12
+  wechatpayCertificates: sads
+  merchantPrivateKey: asff

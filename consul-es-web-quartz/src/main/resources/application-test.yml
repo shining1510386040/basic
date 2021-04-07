@@ -73,9 +73,9 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.Kingbase8Dialect
+  #    properties:
+  #      hibernate:
+  #        dialect: org.hibernate.dialect.Kingbase8Dialect
   # quartz 定时任务配置：QuartzAutoConfiguration
   quartz:
     auto-startup: true
@@ -138,3 +138,12 @@ logging:
 #    url: localhost:9200
 #    username:
 #    password:
+
+# hbase 配置
+hbase:
+  config:
+    hbase.zookeeper.quorum: 192.168.200.71,192.168.200.73
+    hbase.zookeeper.property.clientPort: 2181
+zookeeper:
+  znode:
+    parent: /hbase
