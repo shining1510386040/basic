@@ -32,6 +32,7 @@
         <module>spring-cloud-seuth</module>
         <module>zipkin-service</module>
         <module>mechant-app-service</module>
+        <module>es7-with-resthighlevelclient</module>
     </modules>
 
     <properties>
