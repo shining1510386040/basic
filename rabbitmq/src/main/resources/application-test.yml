@@ -1,0 +1,7 @@
+spring:
+  # rabbitMQ配置
+  rabbitmq:
+    addresses: 127.0.0.1:5672 #集群配置，格式，ip：port，ip：port
+    username: guest #用户名
+    password: guest #密码
+    virtual-host: / #连接到rabbitMQ的vhost虚拟主机
