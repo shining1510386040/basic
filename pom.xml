@@ -33,6 +33,7 @@
         <module>zipkin-service</module>
         <module>mechant-app-service</module>
         <module>es7-with-resthighlevelclient</module>
+        <module>rocketmq-with-springboot</module>
     </modules>
 
     <properties>

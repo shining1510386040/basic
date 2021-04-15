@@ -1,0 +1,10 @@
+server:
+  port: 9080
+spring:
+  application:
+    name: rocketmq-with-springboot
+## rocketMQ 配置（RocketMQAutoConfiguration）
+rocketmq:
+  name-server: 172.18.62.112:9876
+  producer:
+    group: my-group
