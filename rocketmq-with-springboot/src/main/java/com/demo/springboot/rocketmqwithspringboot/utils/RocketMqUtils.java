@@ -353,22 +353,22 @@ public class RocketMqUtils {
 
     public static void main(String[] args) throws Exception {
         // tag="pushA || pushB || pushC" 用||隔开表示多个tag消息都可以接收,null或*表示主题所有队列，但是发送MQ一条消息只能有一个tag标签
-        RocketMqUtils rocketMqUtils = new RocketMqUtils("172.18.62.112:9876;192.168.1.2:9876", "my-topic-1", "pushA", 3000);
-        //生产消息
-        List<String> msgList = new ArrayList<String>();
-        for (int i = 0; i < 10; i++) {
-            msgList.add("order_" + UUID.randomUUID().toString());
-            if ((i + 1) % 10 == 0) {
-                TimeUnit.SECONDS.sleep(3);
-            }
-        }
-        //发送同步消息
-        rocketMqUtils.sendMq("cluster-test-group", msgList, false, true, 3);
+        RocketMqUtils rocketMqUtils = new RocketMqUtils("127.0.0.1:9876;127.0.0.1:9876", "my-topic-1", "pushA", 3000);
+//        //生产消息
+//        List<String> msgList = new ArrayList<String>();
+//        for (int i = 0; i < 10; i++) {
+//            msgList.add("order_" + UUID.randomUUID().toString());
+//            if ((i + 1) % 10 == 0) {
+//                TimeUnit.SECONDS.sleep(3);
+//            }
+//        }
+//        //发送同步消息
+//        rocketMqUtils.sendMq("cluster-test-group", msgList, false, true, 3);
 
-        //消费消息,如果多个消费者线程（应用）consumerGroup相同，则天然具备了负载均衡消费topic消息能力
-//        rocketMqUtils.pullMq("test-consumer-group", (message)->{
-//            String messageBody = new String(message.getBody(), RemotingHelper.DEFAULT_CHARSET);
-//            System.out.println("消费响应：tag : " + message.getTags() + ",  msgBody : " + messageBody);//输出消息内容
-//        }, true);
+//        消费消息,如果多个消费者线程（应用）consumerGroup相同，则天然具备了负载均衡消费topic消息能力
+        rocketMqUtils.pullMq("test-consumer-group", (message) -> {
+            String messageBody = new String(message.getBody(), RemotingHelper.DEFAULT_CHARSET);
+            System.out.println("消费响应：tag : " + message.getTags() + ",  msgBody : " + messageBody);//输出消息内容
+        });
     }
 }

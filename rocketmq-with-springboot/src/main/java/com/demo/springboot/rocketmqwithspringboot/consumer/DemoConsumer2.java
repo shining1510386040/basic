@@ -17,8 +17,8 @@ import java.nio.charset.StandardCharsets;
  */
 @Service
 @Slf4j
-@RocketMQMessageListener(topic = "test-topic-new1", consumerGroup = "consumerGroup-test1")
-public class DemoConsumer implements RocketMQListener<String> {
+@RocketMQMessageListener(topic = "topic-async", consumerGroup = "consumerGroup-test1")
+public class DemoConsumer2 implements RocketMQListener<String> {
 
     @Override
     public void onMessage(String message) {
