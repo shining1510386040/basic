@@ -34,6 +34,9 @@
         <module>mechant-app-service</module>
         <module>es7-with-resthighlevelclient</module>
         <module>rocketmq-with-springboot</module>
+        <module>gray-service</module>
+        <module>eureka-service</module>
+        <module>gray-consumer-service1</module>
     </modules>
 
     <properties>
