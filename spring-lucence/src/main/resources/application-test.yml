@@ -1,0 +1,14 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: spring-lucence
+
+# 自定义的配置
+database:
+  mongodb:
+    customer:
+      host: localhost:27017
+      username: admin
+      password: admin
+      database: mydb-local

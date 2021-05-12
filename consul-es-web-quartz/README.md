@@ -140,3 +140,34 @@ LDAP简称对应
 ldap 操作：
 仓储接口：
 模板：ldapTemplate；
+====================》》》》异步servlet？
+servlet3.0 提供了异步servlet 的支持？（AIO）
+
+tomcat容器提供 工作线成池（http线称）默认值为200
+异步servlet提供 业务线成池（jdk线成，一般比200大一点）需开发人员实现
+ 
+ 同步的servlet 的 工作线程和业务线程是一个线程；
+ 
+ =======》》》》同步、异步、阻塞（BIO）和非阻塞（NIO）
+阻塞和非阻塞是状态：同步和异步是数据通讯方式；
+可以认为：一个线程内干完的事情就是同步的，需线程切换协同完成的事情就是异步的；
+
+========》》》
+#### Tomcat NIO Connector ,Servlet 3.0 Async,Spring MVC Async的关系
+
+对于这几个概念往往会混淆，这里做一个梳理比较，nio是一种IO的模型，对比与传统的BIO，它可以利用较少的线程处理更多的连接从而增加机器的吞吐量，Tomcat NIO Connector是Tomcat的一种NIO连接模式。异步，前面提到他是一种通讯的方式，它跟NIO没有任务关系，及时没有NIO也可以实现异步，Servlet 3.0 Async是指Servlet 3规范以后支持了异步处理Servlet请求，我们可以把请求线程和业务线程分开。Spring MVC Async是在Servlet3异步的基础上做了一层封装。具体的区别如下：
+8.1、Tomcat NIO Connector
+
+Tomcat的Connector 有三种模式，BIO,NIO,APR,Tomcat NIO Connector是其中的NIO模式，使得tomcat容器可以用较少的线程处理大量的连接请求，不再是传统的一请求一线程模式。Tomcat的server.xml配置protocol="org.apache.coyote.http11.Http11NioProtocol"，Http11NioProtocol 从 tomcat 6.x 开始支持。NIO的细节可以参看NIO相关技术文章。
+8.2、Servlet 3.0 Async
+
+是说Servlet 3.0支持了业务请求的异步处理，Servlet3之前一个请求的处理流程，请求解析、READ BODY,RESPONSE BODY,以及其中的业务逻辑处理都由Tomcat线程池中的一个线程进行处理的。那么3.0以后我们可以让请求线程(IO线程)和业务处理线程分开，进而对业务进行线程池隔离。我们还可以根据业务重要性进行业务分级，然后再把线程池分级。还可以根据这些分级做其它操作比如监控和降级处理。servlet 3.0 从 tomcat 7.x 开始支持。
+
+==========》》》
+Spring MVC 的异步
+
+DeferredResult 类
+
+====》》》
+Servlet3.1的非阻塞IO从下面图中可以看出是面对InputStream 和 OutPutStream流的，
+这里的非阻塞IO跟我们常说的JDK NIO（IO多路复用）不是一个概念，Servlet3.1的非阻塞是同jdk的事件驱动机制来实现。
