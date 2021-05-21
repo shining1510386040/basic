@@ -1,0 +1,14 @@
+server:
+  port: 9991
+spring:
+  application:
+    name: neo4j
+  ## neo4j 配置Neo4jDataAutoConfiguration
+  data:
+    neo4j:
+      # 生产集群配置 leader:ip1 follower:ip2 ,ip3
+      # uri: bolt://ip1:7687
+      #uris: bolt://ip2:7687,bolt://ip3:7687
+      uri: bolt://localhost:7687
+      username: neo4j
+      password: neo4j2

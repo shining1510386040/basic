@@ -38,6 +38,7 @@
         <module>eureka-service</module>
         <module>gray-consumer-service1</module>
         <module>spring-lucence</module>
+        <module>neo4j</module>
     </modules>
 
     <properties>
