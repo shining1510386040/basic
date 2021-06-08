@@ -1,0 +1,87 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: dynamic-datasource
+  datasource:
+    ## DynamicDataSourceAutoConfiguration 动态数据源配置
+    dynamic:
+      primary: master #设置默认的数据源或者数据源组,默认值即为master
+      strict: false #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
+      datasource:
+        master:
+          url: jdbc:mysql://localhost:3306/dynamic_master?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
+          username: root
+          password: root
+          driver-class-name: com.mysql.cj.jdbc.Driver # 3.2.0开始支持SPI可省略此配置
+#          druid:
+#            initial-size: 5
+#            max-active: 20
+#            min-idle: 5
+#            max-wait: 60000
+#            min-evictable-idle-time-millis: 300000
+#            max-evictable-idle-time-millis: 300000
+#            time-between-eviction-runs-millis: 60000
+#            validation-query: select 1
+#            validation-query-timeout: -1
+#            test-on-borrow: false
+#            test-on-return: false
+#            test-while-idle: true
+#            pool-prepared-statements: true
+#            filters: stat,wall,log4j
+#            share-prepared-statements: true
+        slave_1:
+          url: jdbc:mysql://localhost:3306/dynamic_slave_1?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
+          username: root
+          password: root
+          driver-class-name: com.mysql.cj.jdbc.Driver
+#          druid:
+#            initial-size: 5
+#            max-active: 20
+#            min-idle: 5
+#            max-wait: 60000
+#            min-evictable-idle-time-millis: 300000
+#            max-evictable-idle-time-millis: 300000
+#            time-between-eviction-runs-millis: 60000
+#            validation-query: select 1
+#            validation-query-timeout: -1
+#            test-on-borrow: false
+#            test-on-return: false
+#            test-while-idle: true
+#            pool-prepared-statements: true
+#            filters: stat,wall,log4j
+#            share-prepared-statements: true
+#        slave_2:
+#          url: ENC(jdbc:mysql://localhost:3306/dynamic_slave_2?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true) # 内置加密,使用请查看详细文档
+#          username: ENC(root)
+#          password: ENC(root)
+#          driver-class-name: com.mysql.jdbc.Driver
+#          druid:
+#            initial-size: 5
+#            max-active: 20
+#            min-idle: 5
+#            max-wait: 60000
+#            min-evictable-idle-time-millis: 300000
+#            max-evictable-idle-time-millis: 300000
+#            time-between-eviction-runs-millis: 60000
+#            validation-query: select 1
+#            validation-query-timeout: -1
+#            test-on-borrow: false
+#            test-on-return: false
+#            test-while-idle: true
+#            pool-prepared-statements: true
+#            filters: stat,wall,log4j
+#            share-prepared-statements: true
+  main:
+    # 当遇到同样名字的时候，是否允许覆盖注册
+    allow-bean-definition-overriding: true
+# 开启日志
+logging:
+  level:
+    com.baomidou.dynamic: debug
+druid:
+  login:
+    username: root
+    password: root
+  allow:
+    ip: 127.0.0.1

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.springboot.dynamicdatasource.mapper.SysMenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.demo.springboot.dynamicdatasource.entity.SysMenu">
+        <id column="id" property="id" />
+        <result column="menuname" property="menuname" />
+        <result column="menuid" property="menuid" />
+        <result column="parentmenuid" property="parentmenuid" />
+        <result column="currentlevel" property="currentlevel" />
+        <result column="gap" property="gap" />
+        <result column="createby" property="createby" />
+        <result column="createdate" property="createdate" />
+        <result column="lastmodifyby" property="lastmodifyby" />
+        <result column="lastmodifydate" property="lastmodifydate" />
+    </resultMap>
+
+</mapper>
