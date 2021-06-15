@@ -40,6 +40,7 @@
         <module>spring-lucence</module>
         <module>neo4j</module>
         <module>dynamic-datasource</module>
+        <module>springboot-rediscluster</module>
     </modules>
 
     <properties>
