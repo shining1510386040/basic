@@ -5,6 +5,8 @@ spring:
     name: rocketmq-with-springboot
 ## rocketMQ 配置（RocketMQAutoConfiguration）
 rocketmq:
+  ## nameserver 集群中对等的，互不通信，连接一个即可
   name-server: 127.0.0.1:9876
   producer:
     group: my-group
+    retry-times-when-send-failed: 2
