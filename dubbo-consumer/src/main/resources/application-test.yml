@@ -1,0 +1,15 @@
+server:
+  port: 3001
+spring:
+  application:
+    name: dubbo-consumer
+# dubbo 消费方配置 DubboAutoConfiguration
+dubbo:
+  consumer:
+    reconnect: 2
+    timeout: 3000
+  application:
+    name: annotation-consumer
+  registry:
+    address: zookeeper://127.0.0.1:2181
+

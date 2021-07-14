@@ -40,6 +40,7 @@
         <module>neo4j</module>
         <module>dynamic-datasource</module>
         <module>springboot-rediscluster</module>
+        <module>dubbo-with-springboot</module>
     </modules>
 
     <properties>
