@@ -1,10 +1,5 @@
 package com.demo.springboot.web.common.beanDI;
 
-import com.demo.springboot.web.common.beanDI.condition.VipFourCondition;
-import com.demo.springboot.web.common.beanDI.condition.VipOneCondition;
-import org.springframework.context.annotation.Conditional;
-import org.springframework.stereotype.Component;
-
 /**
  * @author Wenyi Cao
  * @version 1.0
