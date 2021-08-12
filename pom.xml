@@ -41,6 +41,7 @@
         <module>dynamic-datasource</module>
         <module>springboot-rediscluster</module>
         <module>dubbo-with-springboot</module>
+        <module>sentry-with-springboot</module>
     </modules>
 
     <properties>
