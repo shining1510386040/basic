@@ -7,3 +7,5 @@ spring:
 sentry:
   dsn: http://4abac4a31552492581b84e56a59f1d65@localhost:9900/2
   exception-resolver-order: 2147483647
+logging:
+  config: classpath:logback.xml
