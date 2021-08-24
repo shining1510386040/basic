@@ -1,0 +1,20 @@
+server:
+  port: 9521
+spring:
+  application:
+    name: spring-basic
+  # 数据源 DataSourceAutoConfiguration
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/spring-basic?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
+  # jdbcTemplate 配置 JdbcTemplateAutoConfiguration
+  jdbc:
+    template:
+      ## 单次tcp连接返回的条数
+      fetch-size: -1
+      ## 最多返回的行数，太大会发生jvm 的OOM，默认-1 无限制；经验值设置为5W
+      max-rows: 50000
+      ## 单个事务的超时时间，单位秒
+      query-timeout: 20

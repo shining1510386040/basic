@@ -42,6 +42,7 @@
         <module>springboot-rediscluster</module>
         <module>dubbo-with-springboot</module>
         <module>sentry-with-springboot</module>
+        <module>spring-basic</module>
     </modules>
 
     <properties>
