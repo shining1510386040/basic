@@ -64,3 +64,26 @@
           3.  queryXxx：用于DQL数据查询语句。
                执行查询语句；
           4. batchUpdate():批量执行，批量插入 
+          
+ ### Spring中bean的生命周期？
+    getBean()--> 实例化-->填充属性-->初始化；
+    
+    getBean()-->createBeanInstance()-->populateBean()-->{..}-->initialBean()
+    
+ 
+ ### Spring中Bean的循环依赖问题？（单例bean是如何解决的？）
+    循环依赖：在IOC容器创建bean的时候，bean之间相互属性依赖，产生死循环创建问题；
+    
+ ### Spring的三级缓存？
+ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements SingletonBeanRegistry {
+     private static final int SUPPRESSED_EXCEPTIONS_LIMIT = 100;
+     // 一级缓存 bean池，存放的是 实例
+     private final Map<String, Object> singletonObjects = new ConcurrentHashMap(256);
+     // 三级缓存 BeanFactory工厂池 存放的是bean的工厂
+     private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap(16);
+     // 二级缓存 半成品Bean池（未赋值属性的）存放的是 bean代理
+     private final Map<String, Object> earlySingletonObjects = new ConcurrentHashMap(16);
+     // ....
+  }
+  
+ 

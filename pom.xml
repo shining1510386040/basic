@@ -43,6 +43,7 @@
         <module>dubbo-with-springboot</module>
         <module>sentry-with-springboot</module>
         <module>spring-basic</module>
+        <module>shardingsphere-with-springboot</module>
     </modules>
 
     <properties>

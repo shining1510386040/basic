@@ -1,0 +1,51 @@
+server:
+  port: 9876
+spring:
+  application:
+    name: shardingsphere-with-springboot
+  ## sharding-jdbc 配置 ShardingSphereAutoConfiguration;
+  shardingsphere:
+    datasource:
+      ### 数据源名称
+      names: ds0,ds1
+      ### 数据源ds0
+      ds0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/ds0?useSSL=false&serverTimezone=UTC
+        username: root
+        password: root
+      ### 数据源ds1
+      ds1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/ds1?useSSL=false&serverTimezone=UTC
+        username: root
+        password: root
+    sharding:
+      #### 分库分表规则
+      tables:
+        #### t_order 分表规则
+        t_order:
+          # 数据节点
+          actual-data-nodes: ds$->{0..1}.t_order_$->{0..1}
+          # 分库策略
+          database-strategy:
+            inline:
+              sharding-column: user_id
+              algorithm-expression: ds${user_id % 2}
+          # 分表策略
+          table-strategy:
+            inline:
+              sharding-column: order_id
+              algorithm-expression: t_order_${order_id % 2}
+    props:
+      sql:
+        ## 打印执行的数据库
+        show: true
+# mybatis-plus 配置
+mybatis-plus:
+  mapper-locations: classpath*:mappers/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.demo.springboot.shardingspherewithspringboot.entity
