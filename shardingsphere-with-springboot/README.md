@@ -26,6 +26,8 @@
         Hint 行表达式分片算法
     自定义类分片算法
 
+### shardingSphere的默认主键生成策略？
+ShardingSphere提供灵活的配置分布式主键生成策略方式。在分片规则配置模块可配置每个表的主键生成策略，默认使用雪花算法（snowflake）生成64bit的长整型数据。
 
     
 
@@ -67,3 +69,24 @@ https://shardingsphere.apache.org/document/current/cn/user-manual/shardingsphere
     不分片策略
 
 对应NoneShardingStrategy。不分片的策略。
+
+### 遇到的问题？
+
+1. entity 使用localdatetime 类型报错：？
+
+#### 分布式主键生成方案？
+
+    https://www.cnblogs.com/purple5252/p/14014734.html
+
+   不同数据节点间生成全局唯一主键是个棘手的问题，
+    一张逻辑表 t_order 拆分成多个真实表 t_order_n，然后被分散到不同分片库 
+        db_0、db_1... ，各真实表的自增键由于无法互相感知从而会产生重复主键
+        
+   目前已经有了许多第三放解决方案可以完美解决这个问题，比如基于 UUID、SNOWFLAKE算法 、segment号段，使用特定算法生成不重复键，或者直接引用主键生成服务，像美团（Leaf）和 滴滴（TinyId）等。
+   
+   而sharding-jdbc 内置了两种分布式主键生成方案，UUID、SNOWFLAKE，不仅如此它还抽离出分布式主键生成器的接口，以便于开发者实现自定义的主键生成器，后续我们会在自定义的生成器中接入 滴滴（TinyId）的主键生成服务。
+   
+   ShardingSphere 相关接口：
+   ShardingKeyGenerator：
+        SnowflakeShardingKeyGenerator：雪花算法（默认雪花算法）
+        UUIDShardingKeyGenerator：UUID方案

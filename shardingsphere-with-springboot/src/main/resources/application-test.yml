@@ -39,6 +39,17 @@ spring:
             inline:
               sharding-column: order_id
               algorithm-expression: t_order_${order_id % 2}
+        # t_order 逻辑表的分布式主键生成策略
+        key-generator:
+          column: id
+          type: MyType # 雪花算法or UUID
+          props:
+            worker:
+              id: 123
+      default-key-generator:
+        type: SNOWFLAKE
+        column: id
+        props: null
     props:
       sql:
         ## 打印执行的数据库

@@ -1,13 +1,12 @@
 package com.demo.springboot.shardingspherewithspringboot.entity;
 
 import com.baomidou.mybatisplus.extension.activerecord.Model;
-
-import java.time.LocalDateTime;
-import java.io.Serializable;
-
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -36,11 +35,11 @@ public class TOrder extends Model<TOrder> {
 
     private Integer bsflag;
 
-    private LocalDateTime createDate;
+    private Date createDate;
 
     private String createBy;
 
-    private LocalDateTime lastModifyDate;
+    private Date lastModifyDate;
 
     private String lastModifyBy;
 
