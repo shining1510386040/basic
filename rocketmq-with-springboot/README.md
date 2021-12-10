@@ -33,4 +33,16 @@ RabbitTemplate（收发消息）
 未解决：
 https://www.jianshu.com/p/ccdf6fc710b0
 
-
+## 生产者发送消息到mq服务器broker的三种方式？
+    1.sendOneWay():
+        直接发送，不等待broker 的ack消息，可能会存在消息丢失；适用于日志收集等场景
+    2.syncSend():
+        同步发送，默认的方式，生产端发送消息需同步等待broker的ack返回，发送过程中存在重试机制，默认重试2次，
+        消息可能重复，需在 消费端做幂等处理；
+    3.asyncSend():
+        异步发送，生产端发送消息不需等待broker 的ack消息返回，发送过程有重试机制，默认2次；
+        消息可能重复。需在消费端做幂等处理；异步需事先SendBack回调接口；做后续处理
+ ## 消息路由到指定的消费队列？MessageQueueSelector
+    
+    MessageQueueSelector：
+       

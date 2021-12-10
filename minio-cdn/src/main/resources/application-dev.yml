@@ -1,0 +1,26 @@
+
+spring:
+  resources:
+    # 静态资源配置：默认的会打包到fat jar中；这里配置一个和fat jar 同级的目录
+    static-locations: classpath:/resources/, classpath:/static, file:customjs/
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
+  servlet:
+    multipart:
+      # 根据实际需求作调整
+      # 默认最大上传文件大小为1M，单个文件大小
+      max-file-size: 10MB
+      # 默认最大请求大小为10M，总上传的数据大小
+      max-request-size: 15MB
+# minio小文件服务配置
+minio:
+  ## 对象存储服务的URL
+  endpoint: https://cdn.cloudcc.com
+  ## Access key就像用户ID，可以唯一标识你的账户
+  accesskey: Admincloudcc
+  ## Secret key是你账户的密码。
+  secretkey: Cloudcc123!@#szyd
+server:
+  port: 9099

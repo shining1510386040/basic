@@ -44,6 +44,7 @@
         <module>sentry-with-springboot</module>
         <module>spring-basic</module>
         <module>shardingsphere-with-springboot</module>
+        <module>redission-with-springboot</module>
     </modules>
 
     <properties>

@@ -8,5 +8,16 @@ rocketmq:
   ## nameserver 集群中对等的，互不通信，连接一个即可
   name-server: 127.0.0.1:9876
   producer:
-    group: my-group
+    ### 生产端发送消息到broker的失败重试次数
     retry-times-when-send-failed: 2
+    #组名
+    group: anran-producer-group
+    #目的地（topic:tag）
+    #topic
+    topic: anran-topic
+    #sync tag(同步消息tag)
+    sync-tag: anran-sync-tags
+    #async tag(异步消息tag)
+    async-tag: anran-async-tags
+    #oneway tag(单向消息tag)
+    oneway-tag: anran-oneway-tags
