@@ -45,6 +45,7 @@
         <module>spring-basic</module>
         <module>shardingsphere-with-springboot</module>
         <module>redission-with-springboot</module>
+        <module>rsa-interface-ende</module>
     </modules>
 
     <properties>
