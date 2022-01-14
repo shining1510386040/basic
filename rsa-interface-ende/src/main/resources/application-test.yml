@@ -1,0 +1,14 @@
+server:
+  port: 8880
+spring:
+  application:
+    name: rsa-interface-ende
+# rsa 加密解密配置
+rsa:
+  encrypt:
+    open: true # 是否开启加密 true  or  false
+    showLog: true # 是否打印加解密log true  or  false
+    # RSA公钥
+    publicKey: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCRja7OokH6ecanJ9wtJm20moYvZ3a0JPsPl4tu7NWsbzPl1bxezOk/nh6JYCHuMUj2u2AbVD8z6yPLfR18c/Dq5Zvj/dELPqGnDLoUPj2YZvYkrCojMStlV5iYayWtkyOZOHI8Y9LUWctpE0Yn06WGlC9oueL/wTYUp5cjwyZEzwIDAQAB
+    # RSA私钥
+    privateKey: MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAJGNrs6iQfp5xqcn3C0mbbSahi9ndrQk+w+Xi27s1axvM+XVvF7M6T+eHolgIe4xSPa7YBtUPzPrI8t9HXxz8Orlm+P90Qs+oacMuhQ+PZhm9iSsKiMxK2VXmJhrJa2TI5k4cjxj0tRZy2kTRifTpYaUL2i54v/BNhSnlyPDJkTPAgMBAAECgYA/inyflFH9SKAiZNJHm5kU2MhvdVlqtyIq4ltqZ1W4Wytq0G3VbNr+fMaT7jWhyD40CASiqZqVzbbopIv0wqCPImGuMDmIZpINE/8kGQpSsUJ9bw84K9FsfVQUahgUJjLdyFLSY9KpGcsGD9DiY+28Np5I75az+EhVLV/iIBB8AQJBAMdI6u9MqXlqSQk5UfOGYcXFonjstsEIQjUC3XjDiNqFAwC+NxqTf8fbSei+eKivc53ttx/I6OQtVJsFMN4M6QECQQC6+h1sAepneUx1GpKmyTgQpu/jRoWEyu0HfEjgjgEEOGbWLvDX4r81E0nSgoKweyDdJPBq4MXbp0tVxcMBkN3PAkAJAof0p7+lyKNisl+9Jd83xNaypukgUxJDOUzwD88ZKhhXqUHuhqqpS4XM6wejgMM2aa/01O2Km24O0C5Ea8sBAkEAjgT6ohZWaF//Dhev+pVuS1+xaE0hj3rfTUc+x6m05fK9UcR31VL6byMGeKn/AHOVw8OSBWxTfQL2OuEqvJ6/iwJARMvu7PjlMXMXQOBvmEPaQWrHaepUEBl1oaEjpAjnxf8GMNjpikzTe+Ckit0/1h1ziPJD7dBEj5i4UcJ5M52vlA==
