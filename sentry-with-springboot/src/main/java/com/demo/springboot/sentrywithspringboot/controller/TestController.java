@@ -27,13 +27,16 @@ public class TestController {
             throw new Exception("This is a test.");
         } catch (Exception e) {
             Sentry.captureException(e);
+
         }
-        return "Test";
+        return "手动抛出异常测试：Test";
     }
 
     @GetMapping("/testLog")
-    public void testLog() {
+    public String testLog() {
         log.info("test接口");//最低拦截级别为warn，所以info不会输出发送到日志中心
         log.error("error"); //会显示在日志中心，并邮件通知相关联系人
+
+        return "logback收集异常测试";
     }
 }

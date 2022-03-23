@@ -46,6 +46,9 @@
         <module>shardingsphere-with-springboot</module>
         <module>redission-with-springboot</module>
         <module>rsa-interface-ende</module>
+        <module>opencv-with-java</module>
+        <module>mybatis-with-springboot</module>
+        <module>minio-cdn</module>
     </modules>
 
     <properties>
@@ -53,7 +56,6 @@
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
         <springboot.version>2.1.0.RELEASE</springboot.version>
-        <!--<spring.version>4.1.7.RELEASE</spring.version>-->
         <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
     </properties>
 </project>

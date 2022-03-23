@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: opencv-with-java
+opencv:
+  lib:
+  # linux
+  #path: /usr/local/environment/opencv/opencv-4.5.1/build/lib/libopencv_java451.so
+  #windows
+  path: D:/opencv/opencv/build/java/x64/opencv_java451.dll
+

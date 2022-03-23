@@ -4,7 +4,7 @@
     <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
     <appender name="SENTRY" class="io.sentry.logback.SentryAppender">
         <options>
-            <dsn>http://a523ecf7e4ec42f6b3321cd852005f1b@82.156.101.212:9000/2</dsn>
+            <dsn>http://13e4315a3e0f44b2b41e3623441ae6bd@localhost:9000/7</dsn>
             <!--<shutdownTimeout>2000</shutdownTimeout>-->
             <!--<flushTimeoutMillis>15000</flushTimeoutMillis>-->
             <!--<debug>false</debug>-->
@@ -19,7 +19,7 @@
             <!--<readTimeoutMillis>5000</readTimeoutMillis>-->
         </options>
         <!--推送日志最小级别-->
-        <minimumEventLevel>WARN</minimumEventLevel>
+        <minimumEventLevel>INFO</minimumEventLevel>
         <!--成为面包屑最小级别，minimumEventLevel需要小与minimumBreadcrumbLevel的级别才会推送-->
         <minimumBreadcrumbLevel>DEBUG</minimumBreadcrumbLevel>
     </appender>

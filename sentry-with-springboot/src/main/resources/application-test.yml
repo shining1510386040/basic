@@ -5,7 +5,9 @@ spring:
     name: sentry-with-springboot
 # sentry 配置 SentryAutoConfiguration
 sentry:
-  dsn: http://4abac4a31552492581b84e56a59f1d65@localhost:9900/2
+#  dsn: https://abed2bbeb68348278b2981cf19a80700@o1137335.ingest.sentry.io/6189837
+  dsn: http://a523ecf7e4ec42f6b3321cd852005f1b@82.156.101.212:9000/2
   exception-resolver-order: 2147483647
 logging:
+  # 默认的logback配置文件为logback-spring.xml
   config: classpath:logback.xml
